@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #000;
+  height: 200px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+button {
+  display: inline-block;
+  margin: 50px 10px auto;
+  height: 50px;
+  width: 120px;
+  color: #fff;
+  background-color: rgb(4, 165, 208);
+  border-radius: 25px;
+  font-size: 16px;
+  outline-style: none;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  transition:opacity .5s;
+}
+button:hover {
+  opacity:.8;
+}
+
+
