@@ -11,8 +11,8 @@ class App extends Component {
     }
 
     render() {
-        const buttonStyle = {backgroundColor: 'lightgreen'};
-        const buttonAltStyle = {backgroundColor: 'red'};
+        const buttonStyle = {background: '#33cc33'};
+        const buttonAltStyle = {background: 'red'};
         const buttonPauseStyle = {display: 'inline-block'};
         const buttonUnPauseStyle = {display: 'none'};
 
@@ -37,7 +37,7 @@ class App extends Component {
                                 onClick={() => this.setState({isPaused: !this.state.isPaused})}> {this.state.isPaused ? 'play' : 'pause'}
                         </button>
                         <button style={this.state.isStopped ? buttonStyle : buttonAltStyle}
-                                onClick={() => this.setState({isStopped: !this.state.isStopped})}>{this.state.isStopped ? 'start' : 'stop'}
+                                onClick={() => this.setState({isStopped: !this.state.isStopped, isPaused: false})}>{this.state.isStopped ? 'start' : 'stop'}
                         </button>
 
                     </div>

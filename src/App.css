@@ -23,17 +23,23 @@ button {
   height: 50px;
   width: 120px;
   color: #fff;
-  background-color: rgb(4, 165, 208);
+  background:#04a5d0;
   border-radius: 25px;
   font-size: 16px;
   outline-style: none;
   user-select: none;
   cursor: pointer;
   border: none;
-  transition:opacity .5s;
+  transition:all .1s;
+  transform:scale(.95);
 }
 button:hover {
   opacity:.8;
+  transform:scale(1);
+}
+button:active {
+  background:#048aaf;
+  transform:scale(.95);
 }
 
 
