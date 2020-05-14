@@ -1,50 +1,55 @@
-import React, {Component} from 'react';
-import './App.css';
-import Lottie from 'react-lottie';
-import * as animationData from './reactLogo.json'
+import React from "react";
+import "./App.css";
+import { useLottie, Lottie } from "react-lottie-hook";
+import winking from "./animations/reactLogo.json";
 
-class App extends Component {
+const App = () => {
+  const [lottieRef, { isStopped, isPaused }, controls] = useLottie({
+    renderer: "svg",
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+      progressiveLoad: false,
+    },
+    animationData: winking,
+  });
 
-    constructor(props) {
-        super(props);
-        this.state = {isStopped: false, isPaused: false};
-    }
+  const onPlay = React.useCallback(() => {
+    controls.play();
+  }, [controls]);
 
-    render() {
-        const buttonStyle = {background: '#33cc33'};
-        const buttonAltStyle = {background: 'red'};
-        const buttonPauseStyle = {display: 'inline-block'};
-        const buttonUnPauseStyle = {display: 'none'};
+  const onPause = React.useCallback(() => {
+    controls.pause();
+  }, [controls]);
 
-        const defaultOptions = {
-            loop: true,
-            autoplay: true,
-            animationData: animationData,
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMid slice'
+  const onStop = React.useCallback(() => {
+    controls.stop();
+  }, [controls]);
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div>
+          <Lottie lottieRef={lottieRef} height={200} width={200} />
+          <button
+            style={
+              isStopped ? { display: "none" } : { display: "inline-block" }
             }
-        };
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <div>
-                        <Lottie options={defaultOptions}
-                                height={200}
-                                width={200}
-                                isStopped={this.state.isStopped}
-                                isPaused={this.state.isPaused}/>
-                        <button style={this.state.isStopped ? buttonUnPauseStyle : buttonPauseStyle}
-                                onClick={() => this.setState({isPaused: !this.state.isPaused})}> {this.state.isPaused ? 'play' : 'pause'}
-                        </button>
-                        <button style={this.state.isStopped ? buttonStyle : buttonAltStyle}
-                                onClick={() => this.setState({isStopped: !this.state.isStopped, isPaused: false})}>{this.state.isStopped ? 'start' : 'stop'}
-                        </button>
-
-                    </div>
-                </header>
-            </div>
-        );
-    }
-}
+            onClick={isPaused ? onPlay : onPause}
+          >
+            {isPaused ? "play" : "pause"}
+          </button>
+          <button
+            style={
+              isStopped ? { background: "#33cc33" } : { background: "red" }
+            }
+            onClick={isStopped ? onPlay : onStop}
+          >
+            {isStopped ? "start" : "stop"}
+          </button>
+        </div>
+      </header>
+    </div>
+  );
+};
 
 export default App;
